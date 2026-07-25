@@ -61,7 +61,8 @@
   }
   function set(id, v) { var e = document.getElementById(id); if (e && v != null) e.textContent = Number(v).toLocaleString("en-US"); }
 
-  /* ---- CTAs open the form with the right side ---- */
+  /* ---- modal popup: CTAs open a smooth dialog (no page scroll) ---- */
+  var ov = document.getElementById("ov");
   function setSide(side) {
     if (!side) return;
     document.querySelectorAll("#order-form .seg label").forEach(function (l) {
@@ -69,9 +70,18 @@
       l.classList.toggle("on", on); l.querySelector("input").checked = on;
     });
   }
+  function openModal(side) {
+    if (side) setSide(side);
+    ov.classList.add("on"); document.body.style.overflow = "hidden";
+    var first = ov.querySelector("input[name=sku]"); if (first) setTimeout(function () { first.focus(); }, 120);
+  }
+  function closeModal() { ov.classList.remove("on"); document.body.style.overflow = ""; }
   document.querySelectorAll('a[href="#place"]').forEach(function (a) {
-    a.addEventListener("click", function () { setSide(a.getAttribute("data-side")); });
+    a.addEventListener("click", function (e) { e.preventDefault(); openModal(a.getAttribute("data-side")); });
   });
+  var xbtn = document.getElementById("ov-x"); if (xbtn) xbtn.addEventListener("click", closeModal);
+  ov.addEventListener("click", function (e) { if (e.target === ov) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && ov.classList.contains("on")) closeModal(); });
   document.querySelectorAll("#order-form .seg label").forEach(function (l) {
     l.addEventListener("click", function () {
       document.querySelectorAll("#order-form .seg label").forEach(function (x) { x.classList.remove("on"); });
