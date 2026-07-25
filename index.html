@@ -40,9 +40,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-hei
 .ticker{background:var(--green2);color:var(--paper);height:34px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--gold)}
 .ticker .tag{flex:0 0 auto;background:var(--brass);color:var(--green);height:34px;display:flex;align-items:center;padding:0 14px;font:700 11px/1 var(--mono);letter-spacing:.14em}
 .ticker .win{flex:1 1 auto;overflow:hidden;white-space:nowrap}
-.ticker .trk{display:inline-block;white-space:nowrap;padding-left:100%;animation:tape 46s linear infinite;font:600 12px/1 var(--mono)}
+.ticker .trk{display:inline-block;white-space:nowrap;animation:tape 46s linear infinite;font:600 12px/1 var(--mono);will-change:transform}
 .ticker:hover .trk{animation-play-state:paused}
-@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* left-to-right: two identical halves, slide from -50% to 0 so it tiles seamlessly */
+@keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .ticker .s{padding:0 15px}.ticker b{color:var(--brass)}.ticker .up{color:#7ddc9b}.ticker .down{color:#e88c8c}.ticker .sep{opacity:.3}
 
 /* header */
@@ -145,6 +146,11 @@ section{padding:64px 0;border-top:1px solid var(--hair)}
 .feed .it:first-child{border-top:none}.feed .d{font-family:var(--mono);font-size:11px;color:var(--sage)}
 .feed p{margin:6px 0 0;color:var(--sage);font-size:.95rem;white-space:pre-wrap}
 .feed .it h4{margin:0;font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink)}
+.feed .it h4 .tag{display:inline-block;font:700 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:3px;vertical-align:middle;margin-right:10px;position:relative;top:-1px}
+.feed .it h4 .tag.supply{background:var(--green);color:var(--brass);border:1px solid var(--green3)}
+.feed .it h4 .tag.demand{background:var(--brass);color:var(--green);border:1px solid var(--gold)}
+.feed .it .it-cta{margin-top:13px}
+.feed .it .it-cta .btn{padding:9px 17px;font-size:13px}
 /* board summary cards under Available Supply */
 .board-sum{margin-top:14px;display:flex;flex-direction:column;gap:8px}
 .board-sum .bs{border:1px solid var(--hair);border-left:3px solid var(--gold);border-radius:3px;background:var(--paper2);padding:11px 13px}
@@ -266,14 +272,13 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
       </div>
       <div class="hero-right">
         <div class="board" id="supply">
-          <div class="bh"><span>The Board</span><span id="supply-count">Indicative</span></div>
+          <div class="bh"><span>The Dealdesk</span><span id="supply-count">Indicative</span></div>
           <div style="overflow-x:auto"><table>
             <thead><tr><th>SKU</th><th class="r">QTY</th><th class="r">USD/HR</th></tr></thead>
             <tbody id="supply-body"><tr><td colspan="3" style="color:var(--sage);padding:16px">loading the board…</td></tr></tbody>
           </table></div>
           <div class="bf" id="supply-stamp">Indicative only — counterparties, contract length and terms are never published. Ask the desk for a firm quote.</div>
         </div>
-        <div id="board-summary" class="board-sum"></div>
       </div>
     </div>
   </section>
@@ -286,6 +291,17 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   </div></div></div>
 
   <div class="alps"><img src="/assets/img/alps.png" alt="The Swiss Alps — a spine-and-leaf skyline"></div>
+
+  <section id="desk" class="feed">
+    <div class="wrap">
+      <span class="eyebrow">The Board</span>
+      <div id="feed-body">
+        <div class="it"><div class="d">Live</div><p>Blackwell capacity through Q3 is booking out. Reserve early or take Hopper now.</p></div>
+        <div class="it"><div class="d">This week</div><p>New H200 lots on the book across EU-Central and EU-North.</p></div>
+        <div class="it"><div class="d">Standing</div><p>Requests are confidential. No client names ever appear on this site.</p></div>
+      </div>
+    </div>
+  </section>
 
   <section>
     <div class="wrap">
@@ -316,18 +332,6 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
         <div class="step"><div class="num">03</div><p><strong>You pick one.</strong> We align the spec, the price and the service levels between you and the operator.</p></div>
         <div class="step"><div class="num">04</div><p><strong>You contract directly with the operator.</strong> We broker it and make the terms line up on both sides. We never become a counterparty.</p></div>
         <div class="step"><div class="num">05</div><p><strong>Capacity goes live</strong> on the agreed date, and we stay on the deal with high agency until it is done.</p></div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="desk" class="feed">
-    <div class="wrap">
-      <span class="eyebrow">From the desk</span>
-      <div id="feed-body">
-        <div class="it"><div class="d">Live</div><p>Blackwell capacity through Q3 is booking out. Reserve early or take Hopper now.</p></div>
-        <div class="it"><div class="d">This week</div><p>New H200 lots on the book across EU-Central and EU-North.</p></div>
-        <div class="it"><div class="d">Standing</div><p>Requests are confidential. No client names ever appear on this site.</p></div>
       </div>
     </div>
   </section>
@@ -381,6 +385,30 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   </div>
 </div>
 
-<script>window.SCD_API_BASE="https://mainau-bot.tail4c7e05.ts.net:8443";</script><script src="/assets/desk.js"></script>
+<div class="ov" id="cluster-ov" role="dialog" aria-modal="true" aria-label="Request or offer a cluster">
+  <div class="modal">
+    <div class="mh"><h3 id="cluster-title">Request this cluster</h3><button class="x" id="cluster-x" type="button" aria-label="Close">×</button></div>
+    <div class="mb">
+      <p class="intro" id="cluster-intro">This goes straight to our deals desk. A broker comes back with a firm number, held in confidence.</p>
+      <form id="cluster-form" autocomplete="on">
+        <input type="hidden" name="board_id" value="">
+        <input type="hidden" name="board_title" value="">
+        <input type="hidden" name="kind" value="">
+        <input type="hidden" name="action" value="">
+        <div class="grid2">
+          <label class="f">Your name<input name="name" required placeholder="Jane Doe"></label>
+          <label class="f">Company<input name="company" placeholder="Company (optional)"></label>
+          <label class="f">Contact email<input name="email" type="email" required placeholder="you@company.ai"></label>
+          <label class="f">Phone<input name="phone" placeholder="+41 … (optional)"></label>
+        </div>
+        <label class="f" style="margin-top:12px">Message<textarea name="message" rows="4" required></textarea></label>
+        <div class="acts"><button type="submit" class="btn solid" id="cluster-submit">Send to the desk</button><p class="msg" id="cluster-msg" role="status"></p></div>
+        <div class="note">Sent to deals@swisscomputedesk.ch and logged on our DealDesk. We reply with a firm quote.</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/desk.js"></script>
 </body>
 </html>
