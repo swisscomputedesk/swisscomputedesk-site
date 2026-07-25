@@ -11,37 +11,39 @@
   function loadLive() {
     Promise.all([
       fetch(API + "/assets/market.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch(API + "/assets/offers.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; })
+      fetch(API + "/assets/offers.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch(API + "/api/board/live", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (res) {
-      var m = res[0], o = res[1];
+      var m = res[0], o = res[1], bl = res[2];
 
-      // ticker: live supply lots + market prices
+      // ticker (below the nav): board prices + supply mentions
       var seg = [], arrow = { up: "▲", down: "▼", flat: "–" };
-      if (o && o.offers) seg.push('<span class="s"><b>LIVE SUPPLY</b> ' + o.offers.length + " lots on the desk</span>");
+      if (bl && bl.items) bl.items.forEach(function (r) {
+        seg.push('<span class="s">' + esc(r.sku) + " · " + esc(r.qty) + ' · <b>OFR ' + esc(r.price) + "</b></span>");
+      });
       if (m && m.items) {
         if (m.index && m.index.value) seg.push('<span class="s"><b>' + esc(m.index.name) + "</b> $" + f2(m.index.value) + "</span>");
         m.items.forEach(function (i) {
           seg.push('<span class="s">' + esc(i.sym) + " $" + f2(i.price) + ' <i class="' + i.dir + '">' + arrow[i.dir] + " " + Math.abs(i.chg).toFixed(1) + "%</i></span>");
         });
       }
-      if (o && o.offers) o.offers.slice(0, 8).forEach(function (c) {
-        seg.push('<span class="s">' + esc(c.gpu) + " · " + esc(c.region) + " · " + esc(c.available) + "</span>");
+      if (o && o.offers) o.offers.slice(0, 6).forEach(function (c) {
+        seg.push('<span class="s">' + esc(c.gpu) + " · " + esc(c.region) + " · RFQ</span>");
       });
-      var run = seg.join('<span class="sep">·</span>');
+      var run = seg.join('<span class="sep">|</span>');
       var tape = document.getElementById("tape");
-      if (tape && run) tape.innerHTML = run + '<span class="sep">·</span>' + run;
+      if (tape && run) tape.innerHTML = run + '<span class="sep">|</span>' + run;
 
-      // hero supply board
+      // THE BOARD (hero right) — anonymized SKU / QTY / USD-HR from active offers
       var body = document.getElementById("supply-body");
-      if (body && o && o.offers) {
-        body.innerHTML = o.offers.map(function (c) {
-          return "<tr><td style='color:var(--brass)'>" + esc(c.gpu) + "</td><td>" + esc(c.region) +
-            "</td><td>" + esc(c.term) + "</td><td>" + esc(c.interconnect) + "</td><td>" + esc(c.available) + "</td></tr>";
-        }).join("") || "<tr><td colspan='5' style='padding:16px;color:var(--sage)'>Send an ask and we quote from the private book.</td></tr>";
-        var cnt = document.getElementById("supply-count");
-        if (cnt) cnt.textContent = o.offers.length + " lots";
+      var rows = (bl && bl.items) || [];
+      if (body) {
+        body.innerHTML = rows.length ? rows.map(function (r) {
+          return "<tr><td>" + esc(r.sku) + "</td><td class='r'>" + Number(r.qty || 0).toLocaleString("en-US") +
+            "</td><td class='r' style='color:var(--brass)'>" + esc(r.price || "RFQ") + "</td></tr>";
+        }).join("") : "<tr><td colspan='3' style='padding:16px;color:var(--sage)'>Send an ask and we quote from the private book.</td></tr>";
         var stamp = document.getElementById("supply-stamp");
-        if (stamp && o.updated) stamp.textContent = "anonymized · live from the desk · " + o.updated.slice(0, 16).replace("T", " ") + " UTC";
+        if (stamp && bl && bl.asof) stamp.textContent = "Levels last touched today, " + bl.asof + ". Indicative only — counterparties, contract length and terms are never published. Ask the desk for a firm quote.";
       }
     });
   }
