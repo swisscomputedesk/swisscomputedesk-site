@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /imprint.html
+Disallow: /privacy.html
+Sitemap: https://swisscomputedesk.ch/sitemap.xml

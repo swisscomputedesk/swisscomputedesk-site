@@ -1,0 +1,60 @@
+{
+  "asof": "2026-07-06",
+  "source": "median of provider list prices",
+  "disclaimer": "Indicative market rates, not a quote. Firm pricing on request.",
+  "index": {
+    "name": "SCD Frontier Index",
+    "value": 4.96,
+    "unit": "$/GPU-hr"
+  },
+  "items": [
+    {
+      "sym": "H100",
+      "price": 3.23,
+      "unit": "$/GPU-hr",
+      "chg": 40.0,
+      "note": "1y contract",
+      "dir": "up"
+    },
+    {
+      "sym": "H200",
+      "price": 4.5,
+      "unit": "$/GPU-hr",
+      "chg": 8.0,
+      "note": "firming",
+      "dir": "up"
+    },
+    {
+      "sym": "B200",
+      "price": 7.15,
+      "unit": "$/GPU-hr",
+      "chg": 24.4,
+      "note": "YTD Q1",
+      "dir": "up"
+    },
+    {
+      "sym": "B300",
+      "price": 7.85,
+      "unit": "$/GPU-hr",
+      "chg": 0.0,
+      "note": "booked out",
+      "dir": "flat"
+    },
+    {
+      "sym": "A100",
+      "price": 2.7,
+      "unit": "$/GPU-hr",
+      "chg": -6.0,
+      "note": "softening",
+      "dir": "down"
+    },
+    {
+      "sym": "L40S",
+      "price": 1.5,
+      "unit": "$/GPU-hr",
+      "chg": -3.0,
+      "note": "budget infer",
+      "dir": "down"
+    }
+  ]
+}

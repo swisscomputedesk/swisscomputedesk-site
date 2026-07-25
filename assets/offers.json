@@ -1,0 +1,96 @@
+{
+  "note": "Indicative and anonymized. Live from the Swiss Compute Desk book. No supplier or client names appear here. Send an ask for firm quotes.",
+  "updated": "2026-07-25T13:07:18.015855+00:00",
+  "offers": [
+    {
+      "gpu": "H200",
+      "qty": "2 to 8 nodes",
+      "region": "EU",
+      "term": "from 3 months",
+      "interconnect": "on request",
+      "available": "now",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "GB300 NVL72",
+      "qty": "on request",
+      "region": "NL / EU",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "q3",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "B200",
+      "qty": "on request",
+      "region": "US (Texas)",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "on request",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "B300",
+      "qty": "on request",
+      "region": "on request",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "on request",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "B300",
+      "qty": "on request",
+      "region": "US",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "now",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "DC / colo capacity",
+      "qty": "1 sites",
+      "region": "Germany",
+      "term": "flexible",
+      "interconnect": "liquid cooled",
+      "available": "on request",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "DC / neocloud capacity",
+      "qty": "1 sites",
+      "region": "Brazil",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "now",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "Datacenter/colo capacity",
+      "qty": "on request",
+      "region": "on request",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "2026",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "DC / colo capacity",
+      "qty": "2 sites",
+      "region": "Germany",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "now",
+      "indicative": "on request"
+    },
+    {
+      "gpu": "VAR/Leasing/NeoCloud capacity",
+      "qty": "on request",
+      "region": "on request",
+      "term": "flexible",
+      "interconnect": "on request",
+      "available": "on request",
+      "indicative": "on request"
+    }
+  ]
+}
