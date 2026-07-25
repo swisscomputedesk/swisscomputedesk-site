@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "items": [
+    {
+      "id": "B-ZKM13N",
+      "title": "Blackwell B300 · EU-Central",
+      "shortSummary": "128 B300 · EU · Q4 · InfiniBand",
+      "detailedContent": "A supplier has 128 B300 GPUs (16 nodes) landing in EU-Central in Q4 on 3.2T InfiniBand, 12-month minimum. Early-commit pricing available. Ask the desk for the current number.",
+      "status": "published",
+      "updatedAt": "2026-07-25T19:38:29.010Z",
+      "kind": "Supply"
+    },
+    {
+      "id": "B-3GWR6W",
+      "title": "128 x B200 US IB",
+      "shortSummary": "128 B200 US IB 15% Downpayment",
+      "detailedContent": "Greatest Supply Super under the radar. Direct from operator in Virginia, Built to order. 2 months to deployment after downpayment.",
+      "status": "published",
+      "updatedAt": "2026-07-25T19:38:24.793Z",
+      "kind": "Supply"
+    },
+    {
+      "id": "B-TI46SQ",
+      "title": "H100 4 Nodes",
+      "shortSummary": "H100 4 Nodes, October 2026, US / EU",
+      "detailedContent": "Demand Request, Location US or EU, timeline to deployment October 2026",
+      "status": "published",
+      "updatedAt": "2026-07-25T19:38:15.875Z",
+      "kind": "Demand"
+    },
+    {
+      "id": "B-TAZJT9",
+      "title": "2 x H100, RoCe, $2,0",
+      "shortSummary": "25% Downpayment, Live Capacity",
+      "detailedContent": "Datacenter, Capacity goes live in 1. August",
+      "status": "published",
+      "updatedAt": "2026-07-25T19:37:21.525Z",
+      "kind": "Supply"
+    }
+  ]
+}

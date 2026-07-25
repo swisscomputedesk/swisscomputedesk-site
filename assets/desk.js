@@ -10,9 +10,9 @@
   /* ---- ticker + supply board from the desk ---- */
   function loadLive() {
     Promise.all([
-      fetch(API + "/assets/market.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch(API + "/assets/offers.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
-      fetch(API + "/api/board/live", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; })
+      fetch("/assets/market.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch("/assets/offers.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; }),
+      fetch("/assets/board_live.json", { cache: "no-store" }).then(function (r) { return r.json(); }).catch(function () { return null; })
     ]).then(function (res) {
       var m = res[0], o = res[1], bl = res[2];
 
@@ -52,7 +52,7 @@
 
   /* ---- stats from the desk health ---- */
   function loadStats() {
-    fetch(API + "/api/health", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (h) {
+    fetch("/assets/health.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (h) {
       var c = h.counts || {};
       set("s-supply", c.supply); set("s-demand", c.demand);
       set("s-bids", h.bids); set("s-offers", h.offers);
@@ -109,7 +109,7 @@
   /* ---- Board items (managed in the internal Board Manager) ---- */
   var BOARD_ITEMS = {};   // id -> item, so the CTA can look up the cluster safely
   function loadBoard() {
-    fetch(API + "/api/board/public", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+    fetch("/assets/board_public.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
       var items = (d && d.items) || [];
       if (!items.length) return;
       // full detail under "The Board" (manually-editable Board Manager items).

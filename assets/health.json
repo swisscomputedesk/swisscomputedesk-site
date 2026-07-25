@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "rev": 128,
+  "savedAt": "2026-07-25T19:55:30.000125+00:00",
+  "counts": {
+    "orders": 25,
+    "deals": 0,
+    "contacts": 308,
+    "companies": 400,
+    "activity": 0,
+    "market_index": 0,
+    "market_history": 0,
+    "list_prices": 0,
+    "term_quotes": 0,
+    "board": 4,
+    "board_inbound": 1,
+    "supply": 3177,
+    "demand": 223
+  },
+  "bids": 12,
+  "offers": 12
+}
