@@ -141,9 +141,15 @@ section{padding:64px 0;border-top:1px solid var(--hair)}
 .modal .mb .intro{color:var(--sage);font-size:14px;margin:0 0 18px}
 
 /* from the desk + cta + footer */
-.feed .it{display:grid;grid-template-columns:8rem 1fr;gap:20px;padding:15px 0;border-top:1px solid var(--hair)}
+.feed .it{display:grid;grid-template-columns:8rem 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--hair)}
 .feed .it:first-child{border-top:none}.feed .d{font-family:var(--mono);font-size:11px;color:var(--sage)}
-.feed p{margin:0;color:var(--ink);font-size:.95rem}
+.feed p{margin:6px 0 0;color:var(--sage);font-size:.95rem;white-space:pre-wrap}
+.feed .it h4{margin:0;font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink)}
+/* board summary cards under Available Supply */
+.board-sum{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.board-sum .bs{border:1px solid var(--hair);border-left:3px solid var(--gold);border-radius:3px;background:var(--paper2);padding:11px 13px}
+.board-sum .bs .t{font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--ink)}
+.board-sum .bs .s{font-family:var(--mono);font-size:11px;color:var(--sage);margin-top:3px;letter-spacing:.02em}
 .band{background:var(--green);color:var(--paper)}
 .band h2{color:var(--paper);font-size:clamp(1.6rem,3vw,2.2rem)}
 .band .btn{border-color:var(--brass);color:var(--brass)}.band .btn.gold{background:var(--brass);color:var(--green)}
@@ -209,13 +215,16 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
         </div>
         <div class="fine">Anonymized · no supplier names · firm numbers on your specific ask</div>
       </div>
-      <div class="board" id="supply">
-        <div class="bh"><span><span class="dot"></span>Available supply · live</span><span id="supply-count">—</span></div>
-        <div style="overflow-x:auto"><table>
-          <thead><tr><th>GPU</th><th>Region</th><th>Term</th><th>Interconnect</th><th>Available</th></tr></thead>
-          <tbody id="supply-body"><tr><td colspan="5" style="color:var(--sage);padding:16px">loading live supply…</td></tr></tbody>
-        </table></div>
-        <div class="bf" id="supply-stamp">from the desk book</div>
+      <div class="hero-right">
+        <div class="board" id="supply">
+          <div class="bh"><span><span class="dot"></span>Available supply · live</span><span id="supply-count">—</span></div>
+          <div style="overflow-x:auto"><table>
+            <thead><tr><th>GPU</th><th>Region</th><th>Term</th><th>Interconnect</th><th>Available</th></tr></thead>
+            <tbody id="supply-body"><tr><td colspan="5" style="color:var(--sage);padding:16px">loading live supply…</td></tr></tbody>
+          </table></div>
+          <div class="bf" id="supply-stamp">from the desk book</div>
+        </div>
+        <div id="board-summary" class="board-sum"></div>
       </div>
     </div>
   </section>
@@ -266,9 +275,11 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   <section id="desk" class="feed">
     <div class="wrap">
       <span class="eyebrow">From the desk</span>
-      <div class="it"><div class="d">Live</div><p>Blackwell capacity through Q3 is booking out. Reserve early or take Hopper now.</p></div>
-      <div class="it"><div class="d">This week</div><p>New H200 lots on the book across EU-Central and EU-North.</p></div>
-      <div class="it"><div class="d">Standing</div><p>Requests are confidential. No client names ever appear on this site.</p></div>
+      <div id="feed-body">
+        <div class="it"><div class="d">Live</div><p>Blackwell capacity through Q3 is booking out. Reserve early or take Hopper now.</p></div>
+        <div class="it"><div class="d">This week</div><p>New H200 lots on the book across EU-Central and EU-North.</p></div>
+        <div class="it"><div class="d">Standing</div><p>Requests are confidential. No client names ever appear on this site.</p></div>
+      </div>
     </div>
   </section>
 

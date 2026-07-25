@@ -51,12 +51,7 @@
     fetch(API + "/api/health", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (h) {
       var c = h.counts || {};
       set("s-supply", c.supply); set("s-demand", c.demand);
-    }).catch(function () {});
-    // bids/offers need the order book; derive from state if reachable, else leave dashes
-    fetch(API + "/api/state", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (s) {
-      var o = s.orders || [];
-      set("s-bids", o.filter(function (x) { return x.side === "Bid" && x.status === "Active"; }).length);
-      set("s-offers", o.filter(function (x) { return x.side === "Offer" && x.status === "Active"; }).length);
+      set("s-bids", h.bids); set("s-offers", h.offers);
     }).catch(function () {});
   }
   function set(id, v) { var e = document.getElementById(id); if (e && v != null) e.textContent = Number(v).toLocaleString("en-US"); }
@@ -107,6 +102,27 @@
     }).finally(function () { btn.disabled = false; });
   });
 
-  loadLive(); loadStats();
+  /* ---- Board items (managed in the internal Board Manager) ---- */
+  function loadBoard() {
+    fetch(API + "/api/board/public", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+      var items = (d && d.items) || [];
+      if (!items.length) return;
+      // full detail under "From the desk"
+      var feed = document.getElementById("feed-body");
+      if (feed) feed.innerHTML = items.map(function (b) {
+        var date = (b.updatedAt || "").slice(0, 10);
+        return '<div class="it"><div class="d">' + esc(date) + '</div><div><h4>' + esc(b.title) +
+          "</h4><p>" + esc(b.detailedContent || b.shortSummary || "") + "</p></div></div>";
+      }).join("");
+      // condensed summary under "Available supply"
+      var sum = document.getElementById("board-summary");
+      if (sum) sum.innerHTML = items.slice(0, 5).map(function (b) {
+        return '<div class="bs"><div class="t">' + esc(b.title) + '</div><div class="s">' + esc(b.shortSummary || "") + "</div></div>";
+      }).join("");
+    }).catch(function () {});
+  }
+
+  loadLive(); loadStats(); loadBoard();
   setInterval(loadLive, 300000);
+  setInterval(loadBoard, 300000);
 })();
