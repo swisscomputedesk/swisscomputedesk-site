@@ -1,0 +1,43 @@
+/* Mountain Spine-Leaf — layout + ground. Everything animated is written by JS. */
+
+.msl {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* The composition is authored on a near-black canvas: the links are #ccd4e4,
+     the pulses are white and the mountain carries additive teal/magenta glow.
+     On the site's cream it would wash out, so the band gets its own ground. */
+  background: var(--msl-ground, #0C1912);
+  /* Authoring box is 16:9. Shorten it and the piece scales down with it. */
+  aspect-ratio: var(--msl-aspect, 1920 / 1080);
+  contain: layout paint;
+}
+
+/* The network overlay is pinned to the 1920x1080 box in absolute pixels, so the
+   box is scaled as a unit rather than made fluid — geometry stays exact. */
+.msl-canvas {
+  position: absolute; top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  transform: scale(var(--msl-scale, 1));
+  transform-origin: 0 0;
+}
+.msl-cam { position: absolute; inset: 0; }
+
+.msl-mtn {
+  position: absolute; left: 0; bottom: 0;
+  width: 1920px; height: 1061px;
+  user-select: none; -webkit-user-drag: none;
+}
+.msl-net { position: absolute; left: 180px; top: 398px; width: 1560px; height: 405px; }
+
+.msl-sentinel {
+  position: absolute; left: 0; bottom: 0;
+  width: 1px; height: 1px; pointer-events: none;
+}
+
+/* Optional: melt the band into the cream above it instead of a hard edge. */
+.msl--feather::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 140px; z-index: 2;
+  background: linear-gradient(var(--msl-ground-from, #EEEADE), transparent);
+  pointer-events: none;
+}
