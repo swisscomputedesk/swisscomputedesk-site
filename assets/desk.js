@@ -53,7 +53,14 @@
       if (m && m.items) {
         if (m.index && m.index.value) seg.push('<span class="s"><b>' + esc(m.index.name) + "</b> $" + f2(m.index.value) + "</span>");
         m.items.forEach(function (i) {
-          seg.push('<span class="s">' + esc(i.sym) + " $" + f2(i.price) + ' <i class="' + i.dir + '">' + arrow[i.dir] + " " + Math.abs(i.chg).toFixed(1) + "%</i></span>");
+          // Only show an arrow + % when there's a real logged move. When the
+          // level hasn't moved (no delta from history), show the source instead
+          // of a meaningless "0.0%" — e.g. "B200 $5.63 (Silicon Data)".
+          var moved = i.chg_logged && Math.abs(i.chg) >= 0.05;
+          var tail = moved
+            ? '<i class="' + i.dir + '">' + arrow[i.dir] + " " + Math.abs(i.chg).toFixed(1) + "%</i>"
+            : '<i class="src">(' + esc(i.src || i.note || "indicative") + ")</i>";
+          seg.push('<span class="s">' + esc(i.sym) + " $" + f2(i.price) + " " + tail + "</span>");
         });
       }
       if (o && o.offers) o.offers.slice(0, 6).forEach(function (c) {

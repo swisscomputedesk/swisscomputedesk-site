@@ -13,56 +13,70 @@
       "price": 2.53,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "neo-cloud"
+      "note": "neo-cloud",
+      "src": "Silicon Data"
     },
     {
       "sym": "H200",
       "price": 3.08,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "spot"
+      "note": "spot",
+      "src": "Silicon Data"
     },
     {
       "sym": "B200",
       "price": 5.63,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "spot"
+      "note": "spot",
+      "src": "Silicon Data"
     },
     {
       "sym": "B300",
       "price": 7.5,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "on-demand"
+      "note": "on-demand",
+      "src": "GetDeploying"
     },
     {
       "sym": "H100·mkt",
       "price": 2.63,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "Kalshi impl."
+      "note": "Kalshi impl.",
+      "src": "Kalshi, July avg"
     },
     {
       "sym": "B200·fwd",
       "price": 5.83,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "Kalshi 3mo"
+      "note": "Kalshi 3mo",
+      "src": "Kalshi 3mo fwd"
     },
     {
       "sym": "H200·fwd",
       "price": 4.36,
       "unit": "$/GPU-hr",
       "chg": 0.0,
+      "chg_logged": false,
       "dir": "flat",
-      "note": "Kalshi 3mo"
+      "note": "Kalshi 3mo",
+      "src": "Kalshi 3mo fwd"
     }
   ]
 }

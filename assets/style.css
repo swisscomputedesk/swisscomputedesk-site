@@ -228,6 +228,7 @@ form.desk .actions { grid-column: 1 / -1; display: flex; align-items: center; ga
 .ticker .tk.idx b{color:var(--brass)}
 .ticker .tk i{font-style:normal}
 .ticker .tk i.up{color:#7ddc9b}.ticker .tk i.down{color:#e88c8c}.ticker .tk i.flat{opacity:.6}
+.ticker .tk i.src{opacity:.5;font-size:.92em}
 .ticker .dot{opacity:.35;padding:0 2px}
 
 /* ---- bid/offer form ---- */
