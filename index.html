@@ -34,7 +34,7 @@ img{max-width:100%}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:1.08;margin:0}
 .mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:20px}
+.eyebrow{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:20px}
 
 /* ticker */
 .ticker{background:var(--green2);color:var(--paper);height:34px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--gold)}
@@ -324,13 +324,6 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
     </div>
   </section>
 
-  <section class="msl" data-msl
-           data-msl-image="/assets/img/alps.png"
-           data-pulses="off" data-push-in="1.5"
-           data-link-color="#ffffff" data-spine-color="#ffffff" data-uplink-color="#ffffff"
-           style="--msl-ground:transparent"
-           aria-hidden="true"></section>
-
   <section>
     <div class="wrap">
       <span class="eyebrow">Two sides of one desk</span>
@@ -363,26 +356,25 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
       </div>
     </div>
   </section>
-
-  <div class="band"><div class="wrap" style="padding:60px 32px">
-    <h2>Tell us what you need, or what you have.</h2>
-    <div class="row" style="margin-top:22px">
-      <a class="btn gold" href="#place" data-side="Bid">I have demand</a>
-      <a class="btn" href="#place" data-side="Offer">I have supply</a>
-    </div>
-  </div></div>
 </main>
 
 <footer class="site">
   <div class="wrap">
     <div class="cols">
       <div><div class="nm">The Swiss Compute Desk</div><div class="mono" style="color:var(--sage)">Neutral ground for AI compute.</div></div>
-      <div><a href="#supply">Available supply</a><a href="#how">How it works</a><a href="#place">Place a bid or offer</a></div>
-      <div><a href="mailto:deals@swisscomputedesk.ch">deals@swisscomputedesk.ch</a><a href="#">Luzern, Switzerland</a></div>
+      <div><a href="mailto:deals@swisscomputedesk.ch">deals@swisscomputedesk.ch</a><span class="mono" style="color:var(--sage);display:block;margin-top:8px">Luzern, Switzerland</span></div>
     </div>
-    <div class="legal">The Swiss Compute Desk · Luzern, Switzerland · © 2026 · A trusted third party. We are not a counterparty and hold no position. Requests are confidential.</div>
   </div>
 </footer>
+
+<div style="text-align:center;padding:20px 32px 36px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage)">The Swiss Compute Desk · Luzern, Switzerland · © 2026 · A trusted third party. We are not a counterparty and hold no position. Requests are confidential.</div>
+
+<section class="msl" data-msl
+         data-msl-image="/assets/img/alps.png"
+         data-pulses="off" data-push-in="1.5"
+         data-link-color="#ffffff" data-spine-color="#ffffff" data-uplink-color="#ffffff"
+         style="--msl-ground:transparent"
+         aria-hidden="true"></section>
 
 <script>window.SCD_API_BASE="https://mainau-bot.tail4c7e05.ts.net:8443";</script><div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Place a bid or an offer">
   <div class="modal">
