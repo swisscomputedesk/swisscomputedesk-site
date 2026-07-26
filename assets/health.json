@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "rev": 139,
-  "savedAt": "2026-07-26T06:07:16.597967+00:00",
+  "rev": 141,
+  "savedAt": "2026-07-26T07:10:34.517463+00:00",
   "counts": {
     "orders": 26,
     "deals": 1,
@@ -13,7 +13,7 @@
     "list_prices": 0,
     "term_quotes": 0,
     "board": 4,
-    "board_inbound": 2,
+    "board_inbound": 3,
     "supply": 3177,
     "demand": 223
   },
