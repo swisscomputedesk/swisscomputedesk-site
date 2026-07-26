@@ -6,60 +6,7 @@
   <atom:link href="https://swisscomputedesk.ch/feed.xml" rel="self" type="application/rss+xml" />
   <description>Live GPU/compute supply and demand from the Swiss Compute Desk, plus notes on the AI compute market. Anonymized and indicative.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 26 Jul 2026 10:27:17 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 26 Jul 2026 10:31:41 +0000</lastBuildDate>
   <ttl>15</ttl>
-  <item>
-    <title>Live supply on the desk — 2026-07-26</title>
-    <link>https://swisscomputedesk.ch/#board</link>
-    <guid isPermaLink="false">live-supply-2026-07-26</guid>
-    <category>Supply</category>
-    <pubDate>Sun, 26 Jul 2026 10:27:17 +0000</pubDate>
-    <description>Indicative, anonymized supply live on the Swiss Compute Desk today. Counterparties and terms are never published — ask the desk for a firm quote.
-
-H100 · 256 GPU · EU Central · ~3.1/GPU-hr
-H200 · 128 GPU · EU North · ~4.05/GPU-hr
-B200 · 512 GPU · US East · ~6.4/GPU-hr
-B300 · 128 GPU · EU Central · ~7.8/GPU-hr
-H100 · 512 GPU · EU North · ~2.95/GPU-hr
-H200 · 192 GPU · Middle East · ~4.2/GPU-hr
-B200 · 256 GPU · EU Central · ~6.15/GPU-hr
-H100 · 1024 GPU · US East · ~2.85/GPU-hr
-GB300 NVL72 · 72 GPU · EU North · ~8.9/GPU-hr
-H200 · 96 GPU · Asia · ~4.35/GPU-hr
-B300 · 1024 GPU · ~3.30/GPU-hr
-B300 · 1024 GPU · ~3.30/GPU-hr</description>
-  </item>
-  <item>
-    <title>[Supply] Blackwell B300 · EU-Central</title>
-    <link>https://swisscomputedesk.ch/#board</link>
-    <guid isPermaLink="false">B-ZKM13N</guid>
-    <category>Supply</category>
-    <pubDate>Sat, 25 Jul 2026 19:38:29 +0000</pubDate>
-    <description>A supplier has 128 B300 GPUs (16 nodes) landing in EU-Central in Q4 on 3.2T InfiniBand, 12-month minimum. Early-commit pricing available. Ask the desk for the current number.</description>
-  </item>
-  <item>
-    <title>[Supply] 128 x B200 US IB</title>
-    <link>https://swisscomputedesk.ch/#board</link>
-    <guid isPermaLink="false">B-3GWR6W</guid>
-    <category>Supply</category>
-    <pubDate>Sat, 25 Jul 2026 19:38:24 +0000</pubDate>
-    <description>Greatest Supply Super under the radar. Direct from operator in Virginia, Built to order. 2 months to deployment after downpayment.</description>
-  </item>
-  <item>
-    <title>[Demand] H100 4 Nodes</title>
-    <link>https://swisscomputedesk.ch/#board</link>
-    <guid isPermaLink="false">B-TI46SQ</guid>
-    <category>Demand</category>
-    <pubDate>Sat, 25 Jul 2026 19:38:15 +0000</pubDate>
-    <description>Demand Request, Location US or EU, timeline to deployment October 2026</description>
-  </item>
-  <item>
-    <title>[Supply] 2 x H100, RoCe, $2,0</title>
-    <link>https://swisscomputedesk.ch/#board</link>
-    <guid isPermaLink="false">B-TAZJT9</guid>
-    <category>Supply</category>
-    <pubDate>Sat, 25 Jul 2026 19:37:21 +0000</pubDate>
-    <description>Datacenter, Capacity goes live in 1. August</description>
-  </item>
 </channel>
 </rss>
