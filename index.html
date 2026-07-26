@@ -239,6 +239,10 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   .modal{min-height:100vh;border:none;border-radius:0}
   .row .btn{flex:1 1 auto;text-align:center}
 }
+/* end screen: legal line sits over the closing mountain visual */
+.endscreen{position:relative}
+.endscreen-legal{position:absolute;left:0;right:0;bottom:26px;margin:0;text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 5px rgba(4,12,8,.6);padding:0 24px;z-index:3}
+@media(max-width:640px){.endscreen-legal{bottom:16px;font-size:9px;letter-spacing:.05em}}
 </style>
 <link rel="stylesheet" href="/assets/mountain-spine-leaf.css">
 </head>
