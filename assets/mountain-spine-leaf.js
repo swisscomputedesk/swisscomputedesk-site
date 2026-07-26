@@ -83,7 +83,7 @@
       return e;
     });
     els.pulses = LINKS.map(function (L) {
-      if (L.up) return null;
+      if (L.up || !opts.pulses) return null;
       var e = mk('circle', q('.msl-pulses'));
       set(e, 'r', 13); set(e, 'fill', '#ffffff');
       sty(e, 'filter:drop-shadow(0 0 16px rgba(255,255,255,.85))');
@@ -92,13 +92,13 @@
     els.leaves = LEAVES.map(function (l) {
       var e = mk('rect', q('.msl-leaves'));
       set(e, 'x', l.x); set(e, 'y', l.y); set(e, 'width', NODE_W); set(e, 'height', NODE_H);
-      set(e, 'rx', 30); set(e, 'fill', 'none'); set(e, 'stroke-width', 10);
+      set(e, 'rx', 30); set(e, 'fill', 'none'); set(e, 'stroke-width', 3);
       return e;
     });
     els.spines = SPINES.map(function (s) {
       var e = mk('rect', q('.msl-spines'));
       set(e, 'x', s.x); set(e, 'y', s.y); set(e, 'width', NODE_W); set(e, 'height', NODE_H);
-      set(e, 'rx', 30); set(e, 'fill', 'none'); set(e, 'stroke-width', 12);
+      set(e, 'rx', 30); set(e, 'fill', 'none'); set(e, 'stroke-width', 3.5);
       set(e, 'stroke-dasharray', 2 * (NODE_W + NODE_H));
       return e;
     });
@@ -130,15 +130,15 @@
       var L = LINKS[i], e = els.links[i], p = linkProgress(lt, i);
       if (p <= 0.001) { set(e, 'opacity', 0); continue; }
       var upMix = L.up ? clamp01(ramp(lt, 4.2, 4.7)) : 0;
-      var stroke = grey, width = 7, op = 0.9, glowR = 0;
+      var stroke = grey, width = 2.5, op = 0.9, glowR = 0;
       if (upMix > 0) {
         var slot = 0.16 + hash(i * 3.7) * 0.2;
         var r = hash((Math.floor(lt / slot) + i * 13) * 1.7 + i * 3.3);
         var burst = hash(Math.floor(lt / 1.3) + i * 5) < 0.35 ? 0.85 : 0.45;
         var b = r < burst ? 1 : 0.28;
         var blink = 0.34 + 0.66 * (b * live + (1 - live) * 0.55);
-        stroke = magenta; width = 7 + 1.8 * upMix * blink;
-        op = 0.9 * (1 - upMix) + blink * upMix; glowR = 10 * upMix * blink;
+        stroke = magenta; width = 2.5 + 1 * upMix * blink;
+        op = 0.9 * (1 - upMix) + blink * upMix; glowR = 8 * upMix * blink;
       }
       set(e, 'stroke', stroke); set(e, 'stroke-width', r2(width)); set(e, 'opacity', r2(op));
       set(e, 'stroke-dashoffset', r2(L.len * (1 - p)));
@@ -186,7 +186,7 @@
 
   /* ---------- runtime: scroll-arm, clock, scale-to-fit ---------- */
 
-  var DEFAULTS = { pushIn: 5, pulseSpeed: 0.9,
+  var DEFAULTS = { pushIn: 5, pulseSpeed: 0.9, pulses: true,
     linkColor: '#ccd4e4', spineColor: '#b9a8ff', uplinkColor: '#ff6ee0' };
 
   function init(root) {
@@ -199,8 +199,10 @@
     ['linkColor', 'spineColor', 'uplinkColor'].forEach(function (k) {
       if (root.dataset[k]) tw[k] = root.dataset[k];
     });
+    if (root.dataset.pulses != null) tw.pulses = !/^(0|off|false|no)$/i.test(root.dataset.pulses);
 
-    var els = build(root, { image: root.dataset.mslImage || root.getAttribute('data-msl-image') });
+    var els = build(root, { image: root.dataset.mslImage || root.getAttribute('data-msl-image'),
+                            pulses: tw.pulses });
     var sentinel = document.createElement('span');
     sentinel.className = 'msl-sentinel';
     sentinel.setAttribute('aria-hidden', 'true');
@@ -211,27 +213,41 @@
        there. Starting the clock is therefore invisible — nothing pops. */
     frame(els, 0, tw);
 
-    var armed = false, running = false, raf = 0, origin = 0, elapsed = 0, onScreen = false;
+    var armed = false, running = false, raf = 0, origin = 0, elapsed = 0, onScreen = false, done = false;
 
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
 
+    /* Play exactly one loop, then rest on the pure mountains forever. The clock
+       is a one-shot timeline in [0, LOOP], NOT a modulo — so pausing (scroll
+       away / tab hidden) preserves progress and the single loop always finishes
+       once, whenever the viewer is actually looking. At t=LOOP the network has
+       fully dissolved, so the resting frame is the mountain alone. */
+    function finish() {
+      running = false; done = true; cancelAnimationFrame(raf);
+      frame(els, 0, tw);              /* pure mountains — the resting pose */
+      arm.disconnect(); gov.disconnect();
+      root.classList.remove('is-live'); root.classList.add('is-rested');
+    }
     function tick(now) {
+      var t = elapsed + (now - origin) / 1000;
+      if (t >= LOOP) { finish(); return; }
+      frame(els, t, tw);
       raf = requestAnimationFrame(tick);
-      frame(els, (elapsed + (now - origin) / 1000) % LOOP, tw);
     }
     function play() {
-      if (running || !armed || document.hidden) return;
+      if (running || !armed || done || document.hidden) return;
       running = true; origin = performance.now(); raf = requestAnimationFrame(tick);
     }
     function pause() {
       if (!running) return;
       running = false; cancelAnimationFrame(raf);
-      elapsed = (elapsed + (performance.now() - origin) / 1000) % LOOP;
+      elapsed = elapsed + (performance.now() - origin) / 1000;   /* no modulo: keep one-shot progress */
     }
 
     /* Trigger: fires the first time the BOTTOM edge of the stage crosses into
-       the viewport. A 1px sentinel pinned to that edge reports the crossing
-       exactly; observing the stage itself would only report its top edge. */
+       the viewport — i.e. the full mountain panorama is open. A 1px sentinel
+       pinned to that edge reports the crossing exactly; observing the stage
+       itself would only report its top edge. */
     var arm = new IntersectionObserver(function (e) {
       if (!e[0].isIntersecting) return;
       arm.disconnect();
@@ -240,13 +256,16 @@
     }, { threshold: 0, rootMargin: root.dataset.mslMargin || '0px 0px -6% 0px' });
 
     /* Governor: never burn a frame on something nobody is looking at. Pausing
-       keeps the playhead, so scrolling away and back resumes mid-loop. */
+       keeps the playhead, so scrolling away mid-loop and back resumes the same
+       loop rather than restarting or skipping it. */
     var gov = new IntersectionObserver(function (e) {
       onScreen = e[0].isIntersecting;
+      if (done) return;
       onScreen ? play() : pause();
     }, { threshold: 0, rootMargin: '120px 0px' });
 
     document.addEventListener('visibilitychange', function () {
+      if (done) return;
       document.hidden ? pause() : play();
     });
 
@@ -260,10 +279,10 @@
     function applyMotionPref() {
       if (reduced && reduced.matches) {
         arm.disconnect(); gov.disconnect(); pause();
-        armed = false; root.classList.add('is-static');
-        frame(els, 6.0, tw);           /* network up, traffic live — the resting pose */
-      } else {
-        root.classList.remove('is-static');
+        armed = false; done = true; root.classList.add('is-static');
+        frame(els, 0, tw);             /* pure mountains — matches the post-loop resting pose */
+      } else if (!root.classList.contains('is-rested')) {
+        done = false; root.classList.remove('is-static');
         gov.observe(root); arm.observe(sentinel);
       }
     }
