@@ -7,6 +7,35 @@
   var f2 = function (n) { return (Math.round(n * 100) / 100).toFixed(2); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[<>&]/g, ""); };
 
+  /* ---- Dealdesk boot sequence ---------------------------------------------
+     1) green box materialises top->down in pixel bands
+     2) nav shows "dealdesk loading…" with a blinking YELLOW light
+     3) board rows stream in one line after another
+     4) nav flips to "Desk is live" with the green blinking light            */
+  var booted = false;
+  function navState(loading) {
+    var ld = document.querySelector(".mainnav .ld");
+    var lv = document.querySelector(".mainnav .live");
+    var lt = document.querySelector(".mainnav .lt");
+    if (ld) ld.classList.toggle("loading", !!loading);
+    if (lv) lv.classList.toggle("loading", !!loading);
+    if (lt) lt.textContent = loading ? "dealdesk loading…" : "Desk is live";
+  }
+  function bootStart() {
+    navState(true);
+    var box = document.getElementById("supply");
+    if (box) { box.classList.add("booting"); setTimeout(function () { box.classList.remove("booting"); }, 1000); }
+  }
+  // stagger the freshly-injected rows, then hand control to "Desk is live"
+  function streamRows(body) {
+    if (booted || !body) return;
+    var trs = body.querySelectorAll("tr");
+    var base = 420, step = 130;                 // let the box reveal get going first
+    trs.forEach(function (tr, i) { tr.classList.add("stream"); tr.style.animationDelay = (base + i * step) + "ms"; });
+    var done = base + trs.length * step + 350;
+    setTimeout(function () { navState(false); booted = true; }, done);
+  }
+
   /* ---- ticker + supply board from the desk ---- */
   function loadLive() {
     Promise.all([
@@ -44,6 +73,7 @@
           return "<tr><td>" + esc(r.sku) + "</td><td class='r'>" + Number(r.qty || 0).toLocaleString("en-US") +
             "</td><td class='r' style='color:var(--brass)'>" + esc(r.price || "RFQ") + "</td></tr>";
         }).join("") : "<tr><td colspan='3' style='padding:16px;color:var(--sage)'>Send an ask and we quote from the private book.</td></tr>";
+        streamRows(body);
         var stamp = document.getElementById("supply-stamp");
         if (stamp && bl && bl.asof) stamp.textContent = "Levels last touched today, " + bl.asof + ". Indicative only — counterparties, contract length and terms are never published. Ask the desk for a firm quote.";
       }
@@ -184,6 +214,7 @@
     }).finally(function () { btn.disabled = false; });
   });
 
+  bootStart();
   loadLive(); loadStats(); loadBoard();
   setInterval(loadLive, 300000);
   setInterval(loadBoard, 300000);

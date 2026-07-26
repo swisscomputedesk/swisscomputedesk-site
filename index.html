@@ -185,6 +185,28 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
 .mainnav .live{display:flex;align-items:center;gap:8px;font:600 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
 .mainnav .ld{width:7px;height:7px;border-radius:50%;background:#7ddc9b;box-shadow:0 0 0 3px rgba(125,220,155,.18);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* ---- Dealdesk boot animation ---- */
+.board{position:relative}
+/* green box materialises top->down in chunky pixel bands */
+.board.booting{animation:pixreveal .95s steps(11,end) both}
+@keyframes pixreveal{
+  from{clip-path:inset(0 0 100% 0);opacity:.35;filter:contrast(1.5) brightness(1.25)}
+  to{clip-path:inset(0 0 0 0);opacity:1;filter:none}
+}
+/* pixel-grid dither that fades as the box settles */
+.board.booting::after{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background-image:linear-gradient(rgba(125,220,155,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(125,220,155,.14) 1px,transparent 1px);
+  background-size:8px 8px;mix-blend-mode:screen;
+  animation:pixfade .95s steps(6,end) both;
+}
+@keyframes pixfade{0%{opacity:.9}100%{opacity:0}}
+/* board rows stream in one line after another */
+#supply-body tr.stream{animation:rowin .3s ease-out both}
+@keyframes rowin{from{opacity:0;transform:translateY(-5px);filter:blur(1.2px)}to{opacity:1;transform:none;filter:none}}
+/* nav status: yellow blinking while loading, green when live */
+.mainnav .ld.loading{background:#e8c86a;box-shadow:0 0 0 3px rgba(232,200,106,.22);animation:pulse 1s ease-in-out infinite}
+.mainnav .live.loading{color:#e8c86a}
 .hero{padding:52px 0 48px}
 .hero-grid{grid-template-columns:1.35fr .95fr}
 .hero .rule{width:66px;height:3px;background:var(--gold);margin:0 0 24px;border-radius:2px}
@@ -248,7 +270,7 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
       <a href="#desk">The board</a>
       <a href="#about">About</a>
     </div>
-    <div class="live"><span class="ld"></span>Desk is live</div>
+    <div class="live"><span class="ld"></span><span class="lt">Desk is live</span></div>
   </div>
 </nav>
 
@@ -409,6 +431,6 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   </div>
 </div>
 
-<script src="/assets/desk.js?v=20260725-2"></script>
+<script src="/assets/desk.js?v=20260726-boot"></script>
 </body>
 </html>
