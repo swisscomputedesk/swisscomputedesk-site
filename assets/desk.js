@@ -75,7 +75,7 @@
         }).join("") : "<tr><td colspan='3' style='padding:16px;color:var(--sage)'>Send an ask and we quote from the private book.</td></tr>";
         streamRows(body);
         var stamp = document.getElementById("supply-stamp");
-        if (stamp && bl && bl.asof) stamp.textContent = "Levels last touched today, " + bl.asof + ". Indicative only — counterparties, contract length and terms are never published. Ask the desk for a firm quote.";
+        if (stamp && bl && bl.asof) stamp.textContent = "Levels last touched today, " + bl.asof + ". Indicative only. Counterparties, contract length and terms are never published. Ask the desk for a firm quote.";
       }
     });
   }
@@ -132,7 +132,7 @@
         msg.className = "msg ok"; msg.textContent = "Received. Your " + (j.side || "order") + " is on our desk (ref " + j.id + "). We come back with a firm quote."; }
       else { msg.className = "msg err"; msg.textContent = "Please check: " + (j.error || "missing fields") + "."; }
     }).catch(function () {
-      msg.className = "msg err"; msg.textContent = "Could not reach the desk. Email desk@swisscomputedesk.ch and we'll pick it up.";
+      msg.className = "msg err"; msg.textContent = "Could not reach the desk. Email deals@swisscomputedesk.ch and we'll pick it up.";
     }).finally(function () { btn.disabled = false; });
   });
 
@@ -179,8 +179,8 @@
     f.querySelector('[name=kind]').value = b.kind || "";
     f.querySelector('[name=action]').value = action;
     f.querySelector('[name=message]').value = isSupply
-      ? "Hi — I would like to request this cluster:\n\n" + label + "\n\nPlease send a firm quote, availability and terms."
-      : "Hi — I can offer capacity for this demand:\n\n" + label + "\n\nHere is what I can provide (SKU, count, region, term, price):\n";
+      ? "Hi, I would like to request this cluster.\n\n" + label + "\n\nPlease send a firm quote, availability and terms."
+      : "Hi, I can offer capacity for this demand.\n\n" + label + "\n\nHere is what I can provide (SKU, count, region, term, price):\n";
     document.getElementById("cluster-msg").textContent = "";
     document.getElementById("cluster-msg").className = "msg";
     cov.classList.add("on"); document.body.style.overflow = "hidden";
@@ -206,7 +206,7 @@
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (j.ok) {
         msg.className = "msg ok";
-        msg.textContent = "Sent — this is with our desk now (ref " + j.id + "). We come back shortly.";
+        msg.textContent = "Sent. This is with our desk now (ref " + j.id + "). We come back shortly.";
         setTimeout(closeCluster, 1800);
       } else { msg.className = "msg err"; msg.textContent = "Please check: " + (j.error || "missing fields") + "."; }
     }).catch(function () {

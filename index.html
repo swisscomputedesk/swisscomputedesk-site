@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Swiss Compute Desk — neutral ground for AI compute</title>
+<title>The Swiss Compute Desk · neutral ground for AI compute</title>
 <meta name="description" content="A Swiss desk that sources and brokers reserved GPU capacity. A trusted third party that aligns both sides and works the deal with high agency. You hold your own contracts.">
 <link rel="canonical" href="https://swisscomputedesk.ch/">
-<meta property="og:title" content="The Swiss Compute Desk — neutral ground for AI compute">
+<meta property="og:title" content="The Swiss Compute Desk · neutral ground for AI compute">
 <meta property="og:description" content="A trusted third party that aligns GPU supply and demand and works the deal with high agency. You hold your own contracts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/assets/img/logo.png">
@@ -42,7 +42,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-hei
 .ticker .win{flex:1 1 auto;overflow:hidden;white-space:nowrap}
 .ticker .trk{display:inline-block;white-space:nowrap;animation:tape 46s linear infinite;font:600 12px/1 var(--mono);will-change:transform}
 .ticker:hover .trk{animation-play-state:paused}
-/* left-to-right: two identical halves, slide from -50% to 0 so it tiles seamlessly */
+/* left-to-right: two identical halves, slide from -50% to 0 so it tiles cleanly */
 @keyframes tape{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .ticker .s{padding:0 15px}.ticker b{color:var(--brass)}.ticker .up{color:#7ddc9b}.ticker .down{color:#e88c8c}.ticker .sep{opacity:.3}
 
@@ -92,7 +92,7 @@ nav.main .cta{color:var(--ink);border:1px solid var(--green);padding:8px 15px}
 .stats .st .l{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-top:4px}
 .stats .st:not(:first-child){padding-left:26px}
 
-/* alps band — on paper, no green box; transparent PNG blends into the page */
+/* alps band, on paper, no green box, transparent PNG blends into the page */
 .alps{background:var(--paper);overflow:hidden;line-height:0;text-align:center}
 .alps img{width:100%;max-width:1120px;height:auto;display:block;margin:0 auto}
 
@@ -282,11 +282,11 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Brokers of frontier compute</span>
+        <span class="eyebrow">Brokers of frontier capacity</span>
         <h1>Neutral ground for AI compute</h1>
         <div class="rule"></div>
-        <p class="lead">We broker GPU capacity between the companies that need it and the operators who hold it. Tell us the SKU, the size, the region and the window. We come back with the counterparties who can actually deliver it — usually within a day, always with the terms in writing.</p>
-        <p class="lead2">We own no hardware and take no side. Our commission comes from the seller on a closed deal, so we have no reason to move you toward anything but the right cluster at the right price.</p>
+        <p class="lead">We broker GPU capacity between the companies that need it and the operators who hold it. Send us the SKU, the size, the region and the window. We come back with counterparties who can actually deliver, usually within a day, and always with the terms in writing.</p>
+        <p class="lead2">We own no hardware and we take no side. Our fee comes from the seller once a deal closes, so we have no reason to push you toward anything but the right cluster at the right price.</p>
         <div class="row">
           <a class="btn solid" href="#place" data-side="Bid">I have demand</a>
           <a class="btn" href="#place" data-side="Offer">I have supply</a>
@@ -299,20 +299,20 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
             <thead><tr><th>SKU</th><th class="r">QTY</th><th class="r">USD/HR</th></tr></thead>
             <tbody id="supply-body"><tr><td colspan="3" style="color:var(--sage);padding:16px">loading the board…</td></tr></tbody>
           </table></div>
-          <div class="bf" id="supply-stamp">Indicative only — counterparties, contract length and terms are never published. Ask the desk for a firm quote.</div>
+          <div class="bf" id="supply-stamp">Indicative only. Counterparties, contract length and terms are never published. Ask the desk for a firm quote.</div>
         </div>
       </div>
     </div>
   </section>
 
   <div class="stats"><div class="wrap"><div class="g">
-    <div class="st"><div class="n" id="s-bids">—</div><div class="l">Open bids</div></div>
-    <div class="st"><div class="n" id="s-offers">—</div><div class="l">Open offers</div></div>
-    <div class="st"><div class="n" id="s-supply">—</div><div class="l">Supply lots on the book</div></div>
-    <div class="st"><div class="n gold" id="s-demand">—</div><div class="l">Demand accounts tracked</div></div>
+    <div class="st"><div class="n" id="s-bids">·</div><div class="l">Open bids</div></div>
+    <div class="st"><div class="n" id="s-offers">·</div><div class="l">Open offers</div></div>
+    <div class="st"><div class="n" id="s-supply">·</div><div class="l">Supply lots on the book</div></div>
+    <div class="st"><div class="n gold" id="s-demand">·</div><div class="l">Demand accounts tracked</div></div>
   </div></div></div>
 
-  <div class="alps"><img src="/assets/img/alps.png" alt="The Swiss Alps — a spine-and-leaf skyline"></div>
+  <div class="alps"><img src="/assets/img/alps.png" alt="The Swiss Alps as a spine and leaf skyline"></div>
 
   <section id="desk" class="feed">
     <div class="wrap">
@@ -353,7 +353,7 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
         <div class="step"><div class="num">02</div><p><strong>We work the book</strong> and come back inside two working days with options and prices we would take ourselves.</p></div>
         <div class="step"><div class="num">03</div><p><strong>You pick one.</strong> We align the spec, the price and the service levels between you and the operator.</p></div>
         <div class="step"><div class="num">04</div><p><strong>You contract directly with the operator.</strong> We broker it and make the terms line up on both sides. We never become a counterparty.</p></div>
-        <div class="step"><div class="num">05</div><p><strong>Capacity goes live</strong> on the agreed date, and we stay on the deal with high agency until it is done.</p></div>
+        <div class="step"><div class="num">05</div><p><strong>Capacity goes live</strong> on the agreed date, and we stay on the deal until it is running.</p></div>
       </div>
     </div>
   </section>
@@ -372,7 +372,7 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
     <div class="cols">
       <div><div class="nm">The Swiss Compute Desk</div><div class="mono" style="color:var(--sage)">Neutral ground for AI compute.</div></div>
       <div><a href="#supply">Available supply</a><a href="#how">How it works</a><a href="#place">Place a bid or offer</a></div>
-      <div><a href="mailto:desk@swisscomputedesk.ch">desk@swisscomputedesk.ch</a><a href="#">Luzern, Switzerland</a></div>
+      <div><a href="mailto:deals@swisscomputedesk.ch">deals@swisscomputedesk.ch</a><a href="#">Luzern, Switzerland</a></div>
     </div>
     <div class="legal">The Swiss Compute Desk · Luzern, Switzerland · © 2026 · A trusted third party. We are not a counterparty and hold no position. Requests are confidential.</div>
   </div>
@@ -431,6 +431,6 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
   </div>
 </div>
 
-<script src="/assets/desk.js?v=20260726-boot"></script>
+<script src="/assets/desk.js?v=20260726-copy"></script>
 </body>
 </html>
