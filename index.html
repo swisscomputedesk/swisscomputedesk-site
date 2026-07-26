@@ -393,11 +393,13 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
         <div class="grid2">
           <label class="f">GPU / SKU<input name="sku" list="skus" required placeholder="H100, H200, B200, GB300 NVL72"></label>
           <datalist id="skus"><option>H100</option><option>H200</option><option>B200</option><option>B300</option><option>GB300 NVL72</option><option>RTX PRO 6000</option></datalist>
-          <label class="f">GPU quantity<input name="quantity" required placeholder="e.g. 256 (32 nodes × 8)"></label>
+          <label class="f">Nr. of Cards (GPUs)<input name="cards" inputmode="numeric" placeholder="e.g. 256"></label>
+          <label class="f">Number of Nodes<input name="nodes" placeholder="8 GPU/node assumed — specify if other"></label>
           <label class="f">Time to deployment<input name="availability" required placeholder="ready now / 2 weeks / Q4"></label>
           <label class="f">Price ($/GPU-hr)<input name="price" required placeholder="e.g. 2.85"></label>
           <label class="f">Interconnect<input name="interconnect" list="ics" required placeholder="InfiniBand / RoCE / Ethernet"></label>
           <datalist id="ics"><option>InfiniBand</option><option>RoCE</option><option>Ethernet</option><option>NVLink</option></datalist>
+          <label class="f" style="grid-column:1/-1"><span id="req-label">Hard requirements</span><input name="requirements" id="req-input" placeholder="e.g. WEKA, EU location, virtualization, SLA"></label>
           <label class="f">Contact email<input name="email" type="email" required placeholder="you@company.ai"></label>
           <label class="f">Phone<input name="phone" required placeholder="+41 …"></label>
           <label class="f">Secondary contact<input name="secondary_contact" placeholder="name / email / phone (optional)"></label>
@@ -424,7 +426,10 @@ footer.site .legal{border-top:1px solid #1c3a31;margin-top:26px;padding-top:16px
           <label class="f">Company<input name="company" placeholder="Company (optional)"></label>
           <label class="f">Contact email<input name="email" type="email" required placeholder="you@company.ai"></label>
           <label class="f">Phone<input name="phone" placeholder="+41 … (optional)"></label>
+          <label class="f">Nr. of Cards (GPUs)<input name="cards" inputmode="numeric" placeholder="e.g. 256 (optional)"></label>
+          <label class="f">Number of Nodes<input name="nodes" placeholder="8 GPU/node assumed — specify if other"></label>
         </div>
+        <label class="f" style="margin-top:12px"><span id="cluster-req-label">Hard requirements</span><input name="requirements" id="cluster-req-input" placeholder="e.g. WEKA, EU location, virtualization, SLA"></label>
         <label class="f" style="margin-top:12px">Message<textarea name="message" rows="4" required></textarea></label>
         <div class="acts"><button type="submit" class="btn solid" id="cluster-submit">Send to the desk</button><p class="msg" id="cluster-msg" role="status"></p></div>
         <div class="note">Sent to deals@swisscomputedesk.ch and logged on our DealDesk. We reply with a firm quote.</div>

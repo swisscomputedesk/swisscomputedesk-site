@@ -99,12 +99,20 @@
 
   /* ---- modal popup: CTAs open a smooth dialog (no page scroll) ---- */
   var ov = document.getElementById("ov");
+  // Demand (bid) states HARD requirements; supply (offer) shares ADDITIONAL info.
+  function orderReqLabel(side) {
+    var lab = document.getElementById("req-label"), inp = document.getElementById("req-input");
+    if (!lab || !inp) return;
+    if (side === "Offer") { lab.textContent = "Additional info"; inp.placeholder = "e.g. WEKA, EU location, virtualization, bare metal"; }
+    else { lab.textContent = "Hard requirements"; inp.placeholder = "e.g. WEKA, EU location, virtualization, SLA"; }
+  }
   function setSide(side) {
     if (!side) return;
     document.querySelectorAll("#order-form .seg label").forEach(function (l) {
       var on = l.querySelector("input").value === side;
       l.classList.toggle("on", on); l.querySelector("input").checked = on;
     });
+    orderReqLabel(side);
   }
   function openModal(side) {
     if (side) setSide(side);
@@ -122,6 +130,7 @@
     l.addEventListener("click", function () {
       document.querySelectorAll("#order-form .seg label").forEach(function (x) { x.classList.remove("on"); });
       l.classList.add("on"); l.querySelector("input").checked = true;
+      orderReqLabel(l.querySelector("input").value);
     });
   });
 
@@ -185,6 +194,13 @@
     f.querySelector('[name=board_title]').value = label;
     f.querySelector('[name=kind]').value = b.kind || "";
     f.querySelector('[name=action]').value = action;
+    // Requesting a supply cluster = you are demand -> hard requirements.
+    // Offering against a demand cluster = you are supply -> additional info.
+    var creqL = document.getElementById("cluster-req-label"), creqI = document.getElementById("cluster-req-input");
+    if (creqL && creqI) {
+      if (isSupply) { creqL.textContent = "Hard requirements"; creqI.placeholder = "e.g. WEKA, EU location, virtualization, SLA"; }
+      else { creqL.textContent = "Additional info"; creqI.placeholder = "e.g. WEKA, EU location, virtualization, bare metal"; }
+    }
     f.querySelector('[name=message]').value = isSupply
       ? "Hi, I would like to request this cluster.\n\n" + label + "\n\nPlease send a firm quote, availability and terms."
       : "Hi, I can offer capacity for this demand.\n\n" + label + "\n\nHere is what I can provide (SKU, count, region, term, price):\n";
