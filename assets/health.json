@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "rev": 218,
-  "savedAt": "2026-07-27T15:25:39.899938+00:00",
+  "rev": 220,
+  "savedAt": "2026-07-27T15:36:14.182080+00:00",
   "counts": {
     "orders": 9,
     "deals": 1,
-    "contacts": 322,
-    "companies": 410,
+    "contacts": 323,
+    "companies": 411,
     "activity": 0,
     "market_index": 0,
     "market_history": 0,
