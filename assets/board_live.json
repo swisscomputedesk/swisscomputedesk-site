@@ -2,36 +2,6 @@
   "ok": true,
   "items": [
     {
-      "sku": "H100",
-      "qty": "256",
-      "price": "3.1",
-      "region": "EU Central"
-    },
-    {
-      "sku": "H200",
-      "qty": "128",
-      "price": "4.05",
-      "region": "EU North"
-    },
-    {
-      "sku": "B200",
-      "qty": "512",
-      "price": "6.4",
-      "region": "US East"
-    },
-    {
-      "sku": "B300",
-      "qty": "128",
-      "price": "7.8",
-      "region": "EU Central"
-    },
-    {
-      "sku": "H100",
-      "qty": "512",
-      "price": "2.95",
-      "region": "EU North"
-    },
-    {
       "sku": "H200",
       "qty": "192",
       "price": "4.2",
@@ -74,5 +44,5 @@
       "region": ""
     }
   ],
-  "asof": "10:15 CEST"
+  "asof": "10:30 CEST"
 }
