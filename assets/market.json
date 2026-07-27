@@ -1,5 +1,5 @@
 {
-  "asof": "2026-07-26",
+  "asof": "2026-07-27",
   "source": "Silicon Data · Kalshi · GetDeploying (indicative)",
   "disclaimer": "Indicative market rates, not a quote. Firm pricing on request.",
   "index": {
@@ -70,7 +70,7 @@
     },
     {
       "sym": "H200·fwd",
-      "price": 4.36,
+      "price": 4.33,
       "unit": "$/GPU-hr",
       "chg": 0.0,
       "chg_logged": false,
