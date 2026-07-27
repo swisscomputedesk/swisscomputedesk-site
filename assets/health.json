@@ -1,12 +1,12 @@
 {
   "ok": true,
-  "rev": 164,
-  "savedAt": "2026-07-27T08:27:52.470273+00:00",
+  "rev": 188,
+  "savedAt": "2026-07-27T08:41:31.802877+00:00",
   "counts": {
-    "orders": 22,
+    "orders": 5,
     "deals": 1,
-    "contacts": 311,
-    "companies": 405,
+    "contacts": 313,
+    "companies": 407,
     "activity": 0,
     "market_index": 0,
     "market_history": 0,
@@ -14,10 +14,10 @@
     "term_quotes": 0,
     "board": 4,
     "board_inbound": 5,
-    "newsletters": 0,
+    "newsletters": 1,
     "supply": 3177,
     "demand": 223
   },
-  "bids": 12,
-  "offers": 7
+  "bids": 0,
+  "offers": 2
 }
