@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "rev": 208,
-  "savedAt": "2026-07-27T12:21:18.556556+00:00",
+  "rev": 210,
+  "savedAt": "2026-07-27T13:07:05.478426+00:00",
   "counts": {
-    "orders": 6,
+    "orders": 5,
     "deals": 1,
     "contacts": 320,
     "companies": 409,
