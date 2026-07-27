@@ -6,14 +6,14 @@
   <atom:link href="https://swisscomputedesk.ch/feed.xml" rel="self" type="application/rss+xml" />
   <description>Live GPU/compute supply and demand from the Swiss Compute Desk, plus notes on the AI compute market. Anonymized and indicative.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 27 Jul 2026 14:00:01 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 27 Jul 2026 14:15:01 +0000</lastBuildDate>
   <ttl>15</ttl>
   <item>
     <title>Live supply on the desk — 2026-07-27</title>
     <link>https://swisscomputedesk.ch/#board</link>
     <guid isPermaLink="false">live-supply-2026-07-27</guid>
     <category>Supply</category>
-    <pubDate>Mon, 27 Jul 2026 14:00:01 +0000</pubDate>
+    <pubDate>Mon, 27 Jul 2026 14:15:01 +0000</pubDate>
     <description>Indicative, anonymized supply live on the Swiss Compute Desk today. Counterparties and terms are never published — ask the desk for a firm quote.
 
 B300 · 1024 GPU · ~3.30/GPU-hr
