@@ -42,7 +42,7 @@
     '<div id="scd-modal" role="dialog" aria-modal="true">' +
       '<div class="hd"><h3>Place a bid or an offer</h3><button type="button" id="scd-x" aria-label="Close">×</button></div>' +
       '<div class="bd">' +
-        '<p style="margin:0 0 16px;color:' + SAGE + ';font-size:14px">Straight onto our desk. A broker sees it in seconds and comes back with a firm number. Held in confidence.</p>' +
+        '<p style="margin:0 0 16px;color:' + SAGE + ';font-size:14px">Straight onto our desk. We see it in seconds and come back with a firm number. Held in confidence.</p>' +
         '<form id="scd-form">' +
           '<div id="scd-seg">' +
             '<label class="on"><input type="radio" name="side" value="Bid" checked hidden>I need capacity (bid)</label>' +
